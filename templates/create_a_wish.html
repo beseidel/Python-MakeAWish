@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Document</title>
+</head>
+<body>
+
+
+<table class="wall_table">
+        <tr>
+        <th> Welcome {{session['mickeys_first_name']}}</th>
+        <th><a class="a"  href='/logout'>Log Out</a></th>
+        <th><a class="a" href='/dashboard'>Dashboard</a></th>
+        <th><a class="a" href='/add_wish'>Add A Wish</a></th>
+        </tr>
+    </table>
+
+
+
+<!-- NEW BOOK BOX -->
+    <div class="form_content_box">
+        <form action='/add_wish' method="post">
+            <br></br>
+        <form_header>Create a New Wish Item</form_header>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                            <p class="messages">{{message}}</p> 
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br></br>
+        <label>Create a New Wish Name</label>
+                <input class="input" type="text" name="w_name" placeholder="Insert Wish Name"/>
+
+                    <br></br>
+        <label>Wish Content</label>
+                <input class="input" type="text" name="w_content" placeholder="Insert Wish Content"/>
+                    <br></br>
+        <input class="btn" type="submit" value="Add"/>
+        </form>
+    </div>
+    
+</body>
+</html>
